@@ -1,0 +1,17 @@
+<h1> Tips Test </h1>
+
+
+<h2>Delayed Echo Server:</h2>
+<div>
+    <label>Input: </label>
+    <input [(ngModel)] = 'input' (ngModelChange)='changed($event)'>
+</div>
+<div>
+    <label>Echo: </label>
+    <span>{{echo}}</span>
+</div>
+
+
+<hr>
+<h2>debounced</h2>
+<app-debounced></app-debounced>
