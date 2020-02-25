@@ -1,7 +1,8 @@
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, getTestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing"
 import { XhrComponent } from './xhr.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 describe('XhrComponent', () => {
   let component: XhrComponent;
@@ -13,7 +14,6 @@ describe('XhrComponent', () => {
       declarations: [ XhrComponent ],
       imports:[FormsModule, HttpClientTestingModule]
     })
-    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -33,11 +33,20 @@ describe('XhrComponent', () => {
   });
 
 
+  it("should return ghoul", async(inject([HttpClient],(httpClient: HttpClient)=>{
+    httpClient.get('jhjh').subscribe(res=>{
+      expect(res).toEqual("dds")
+    }, error=>{
+      expect(3).toBe(error)
+    })
+  })))
+
   it('should make xhr', ()=>{
     button = fixture.nativeElement.querySelector('button');
     echo = fixture.nativeElement.querySelector('span');
     button.click();
     const req = httpMock.expectOne('./assets/echo.json');
+    expect(req.request.method).toEqual('GET');
     const mockResp = {"data":"xhr"};
     req.flush(mockResp);
     fixture.detectChanges();
