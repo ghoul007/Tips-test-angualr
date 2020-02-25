@@ -2,19 +2,22 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { DebouncedComponent } from './debounced/debounced.component';
+import { XhrComponent } from './xhr/xhr.component';
 
 describe('AppComponent', () => {
   let fixture;
+  let input, echo;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, DebouncedComponent
+        AppComponent, DebouncedComponent, XhrComponent
       ],
       imports: [FormsModule]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-
+      input  =  fixture.nativeElement.querySelector('input');
+       echo = fixture.nativeElement.querySelector('span');
   }));
 
   it('should create the app', () => {
@@ -24,8 +27,7 @@ describe('AppComponent', () => {
 
   it('test delay', async()=>{
     const  text =  "ghoul";
-    const input  =  fixture.nativeElement.querySelector('input');
-    const  echo = fixture.nativeElement.querySelector('span');
+
     sendKeys(input, text);
     await fixture.whenStable();
     fixture.detectChanges();

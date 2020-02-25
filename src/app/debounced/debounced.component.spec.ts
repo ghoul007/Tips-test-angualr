@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 
 import { DebouncedComponent } from './debounced.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('DebouncedComponent', () => {
   let component: DebouncedComponent;
@@ -10,7 +12,7 @@ describe('DebouncedComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DebouncedComponent ],
-      imports: [FormsModule]
+      imports: [HttpClientModule, FormsModule]
     })
     .compileComponents();
   }));
