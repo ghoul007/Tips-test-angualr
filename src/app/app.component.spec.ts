@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { DebouncedComponent } from './debounced/debounced.component';
 import { XhrComponent } from './xhr/xhr.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   let fixture;
@@ -12,7 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, DebouncedComponent, XhrComponent
       ],
-      imports: [FormsModule]
+      imports: [FormsModule, HttpClientTestingModule]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

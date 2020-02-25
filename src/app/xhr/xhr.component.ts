@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './xhr.component.html',
   styleUrls: ['./xhr.component.scss']
 })
+@Injectable()
 export class XhrComponent {
     input: string;
     echo: string;

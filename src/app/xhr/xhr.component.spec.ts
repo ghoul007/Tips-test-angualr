@@ -7,7 +7,7 @@ describe('XhrComponent', () => {
   let component: XhrComponent;
   let fixture: ComponentFixture<XhrComponent>;
   let httpMock: HttpTestingController;
-  let button;
+  let button, echo;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ XhrComponent ],
@@ -35,7 +35,12 @@ describe('XhrComponent', () => {
 
   it('should make xhr', ()=>{
     button = fixture.nativeElement.querySelector('button');
+    echo = fixture.nativeElement.querySelector('span');
     button.click();
     const req = httpMock.expectOne('./assets/echo.json');
+    const mockResp = {"data":"xhr"};
+    req.flush(mockResp);
+    fixture.detectChanges();
+    expect(echo.textContent).toBe('xhr');
   })
 });

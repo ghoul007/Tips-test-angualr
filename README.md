@@ -35,3 +35,21 @@
      expect(echo.textContent).toBe('hello ghoul!!!');
   }))
   ```
+
+
+### Test With Xhr with HttpTestingController
+
+```js
+
+  it('should make xhr', ()=>{
+    button = fixture.nativeElement.querySelector('button');
+    echo = fixture.nativeElement.querySelector('span');
+    button.click();
+    const req = httpMock.expectOne('./assets/echo.json');
+    const mockResp = {"data":"xhr"};
+    req.flush(mockResp);
+    fixture.detectChanges();
+    expect(echo.textContent).toBe('xhr');
+  })
+
+  ```
